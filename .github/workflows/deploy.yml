@@ -1,0 +1,33 @@
+name: Production deploy
+
+on:
+  push:
+    branches:
+      - master
+      - ci-cd
+
+jobs:
+  deploy-s3:
+    name: Auto deploy to AWS S3
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Setup Node
+        uses: actions/setup-node@master
+        with:
+          node-version: 10.x
+      - name: Install dependencies
+        run: yarn install
+      - name: Build pages
+        run: yarn generate
+      - uses: chrislennon/action-aws-cli@v1.1
+      - name: File Upload
+        run: aws s3 sync dist s3://peacebox-frontend --delete
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+      - name: Cache invalidation
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }}  --paths '/*'
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
