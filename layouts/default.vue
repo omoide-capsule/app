@@ -1,6 +1,8 @@
 <template>
   <v-app>
-    <nuxt />
+    <v-content>
+      <nuxt />
+    </v-content>
   </v-app>
 </template>
 
@@ -11,9 +13,3 @@ export default {
   }
 }
 </script>
-
-<style>
-body {
-  background-color: #f3f3f3;
-}
-</style>
