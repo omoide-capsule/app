@@ -5,7 +5,12 @@
       <div v-else>
         <label>
           <picture-button />
-          <input type="file" ref="fileInput" style="display:none" />
+          <input
+            type="file"
+            ref="fileInput"
+            style="display:none"
+            accept="image/*"
+          />
         </label>
       </div>
     </v-flex>
