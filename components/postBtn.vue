@@ -1,6 +1,6 @@
 <template>
   <div class="post-button">
-    投稿
+    保存
   </div>
 </template>
 <style>
