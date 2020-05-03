@@ -14,8 +14,7 @@
   font-weight: bold;
   box-shadow: -2px 2px 2px 2px #eeeeee;
   transition: 1s;
-  margin-right: 20px;
-  margin-left: 20px;
+  margin: 20px;
   line-height: 40px;
   font-size: 14pt;
   padding: 5px;
