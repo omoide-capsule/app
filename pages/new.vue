@@ -3,6 +3,7 @@
     <title-input />
     <picture-input />
     <body-input />
+    <date-input />
     <post-btn />
   </v-layout>
 </template>
