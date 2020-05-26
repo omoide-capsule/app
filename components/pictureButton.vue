@@ -14,13 +14,13 @@
   text-align: center;
   font-weight: bold;
   height: 30vh;
-  box-shadow: -2px 2px 2px 2px #eeeeee;
+  box-shadow: 2px 2px 2px 2px #eeeeee;
   transition: 1s;
   margin-right: 20px;
   margin-left: 20px;
 }
 
 .picture-button:hover {
-  box-shadow: -6px 6px 3px 3px #eeeeee;
+  box-shadow: 2px 2px 5px 5px #eeeeee;
 }
 </style>
