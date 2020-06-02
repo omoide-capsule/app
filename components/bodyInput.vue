@@ -7,6 +7,7 @@
         placeholder="この思い出について書く🖋"
         class="omoideBody"
         @input="$emit('input', value)"
+        maxlength="200"
       ></textarea>
     </v-flex>
     <v-divider />

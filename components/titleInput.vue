@@ -3,6 +3,7 @@
     :value="value"
     class="title-input"
     type="text"
+    maxlength="15"
     placeholder="タイトル"
     @input="inputHandler"
   />
