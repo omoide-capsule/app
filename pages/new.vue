@@ -1,9 +1,9 @@
 <template>
   <v-layout column align-center>
-    <title-input />
+    <title-input v-model="title" />
     <picture-input />
-    <body-input />
-    <date-input />
+    <body-input v-model="body" />
+    <date-input v-model="date" />
     <post-btn />
   </v-layout>
 </template>
@@ -16,6 +16,14 @@ import dateInput from '../components/dateInput'
 import postBtn from '../components/postBtn'
 
 export default {
-  components: { titleInput, pictureInput, bodyInput, dateInput, postBtn }
+  components: { titleInput, pictureInput, bodyInput, dateInput, postBtn },
+  data() {
+    return {
+      title: '',
+      picture: '',
+      body: '',
+      date: ''
+    }
+  }
 }
 </script>
