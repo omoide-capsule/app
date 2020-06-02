@@ -3,9 +3,10 @@
     <v-divider />
     <v-flex xl12>
       <textarea
-        v-model="content"
+        :value="value"
         placeholder="この思い出について書く🖋"
         class="omoideBody"
+        @input="$emit('input', value)"
       ></textarea>
     </v-flex>
     <v-divider />
@@ -13,11 +14,7 @@
 </template>
 <script>
 export default {
-  data() {
-    return {
-      content: ''
-    }
-  }
+  props: ['value']
 }
 </script>
 <style>
