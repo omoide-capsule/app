@@ -3,7 +3,7 @@
     <title-input v-model="title" />
     <picture-input v-model="picture" />
     <body-input v-model="body" />
-    <date-input v-model="date" />
+    <date-input ref="dateInput" v-model="date" />
     <post-btn @click="createCapsule" />
   </v-layout>
 </template>
@@ -22,18 +22,33 @@ export default {
       title: '',
       picture: '',
       body: '',
-      date: ''
+      date: '' // This will overwitten at mounted()
+    }
+  },
+  mounted() {
+    this.date = this.$refs.dateInput.dateToStr(new Date())
+  },
+  methods: {
+    createCapsule() {
+      const deliveryDate = new Date(this.date)
+      deliveryDate.setHours(0)
+      deliveryDate.setMinutes(0)
+
+      const capsule = {
+        title: this.title,
+        description: this.body,
+        image: this.picture,
+        registeredDate: Math.floor(new Date().getTime() / 1000),
+        deliveryDate: Math.floor(deliveryDate.getTime() / 1000)
+      }
+
+      console.log(capsule)
     }
   },
   head() {
     return {
       titleTemplate: '',
       title: 'あたらしいカプセルをつくる'
-    }
-  },
-  methods: {
-    createCapsule() {
-      console.log('cupsule creation!')
     }
   }
 }
