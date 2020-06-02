@@ -1,10 +1,10 @@
 <template>
   <v-layout column align-center>
     <title-input v-model="title" />
-    <picture-input />
+    <picture-input v-model="picture" />
     <body-input v-model="body" />
     <date-input v-model="date" />
-    <post-btn />
+    <post-btn @click="createCapsule" />
   </v-layout>
 </template>
 
@@ -23,6 +23,11 @@ export default {
       picture: '',
       body: '',
       date: ''
+    }
+  },
+  methods: {
+    createCapsule() {
+      console.log('cupsule creation!')
     }
   }
 }
