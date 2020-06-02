@@ -58,6 +58,7 @@ export default {
         reader.onload = (_e) => {
           this.imgSrc = reader.result
           console.log(this.imgSrc)
+          this.$emit('input', this.imgSrc)
         }
 
         reader.readAsDataURL(file)
