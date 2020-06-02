@@ -1,7 +1,5 @@
 <template>
-  <div class="post-button">
-    保存
-  </div>
+  <div class="post-button" @click="$emit('click')">保存</div>
 </template>
 <style>
 .post-button {
