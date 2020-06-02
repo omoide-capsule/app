@@ -16,8 +16,8 @@
           <label>
             <picture-button />
             <input
-              type="file"
               ref="fileInput"
+              type="file"
               style="display:none"
               accept="image/*"
               @change="onFileStateChange"
