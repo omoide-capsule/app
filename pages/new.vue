@@ -25,6 +25,12 @@ export default {
       date: ''
     }
   },
+  head() {
+    return {
+      titleTemplate: '',
+      title: 'あたらしいカプセルをつくる'
+    }
+  },
   methods: {
     createCapsule() {
       console.log('cupsule creation!')
