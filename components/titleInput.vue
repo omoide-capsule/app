@@ -1,15 +1,25 @@
 <template>
   <input
-    v-model="value"
+    :value="value"
     class="title-input"
     type="text"
     placeholder="タイトル"
-    @change="$emit('input', value)"
+    @input="inputHandler"
   />
 </template>
 <script>
 export default {
-  props: ['value']
+  data() {
+    return {
+      value: ''
+    }
+  },
+  methods: {
+    inputHandler(e) {
+      this.value = e.target.value
+      this.$emit('input', this.value)
+    }
+  }
 }
 </script>
 <style>
