@@ -2,6 +2,11 @@ import colors from 'vuetify/es5/util/colors'
 
 export default {
   mode: 'universal',
+  env: {
+    apiBaseUrl:
+      'https://30otyubhy3.execute-api.ap-northeast-1.amazonaws.com/prod',
+    LIFFId: '1654298000-YGxbGljd'
+  },
   /*
    ** Headers of the page
    */
