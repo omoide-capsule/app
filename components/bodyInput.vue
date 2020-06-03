@@ -7,7 +7,7 @@
         placeholder="この思い出について書く🖋"
         class="omoideBody"
         maxlength="200"
-        @input="$emit('input', value)"
+        @input="inputHandler"
       ></textarea>
     </v-flex>
     <v-divider />
@@ -15,7 +15,17 @@
 </template>
 <script>
 export default {
-  props: ['value']
+  data() {
+    return {
+      value: ''
+    }
+  },
+  methods: {
+    inputHandler(e) {
+      this.value = e.target.value
+      this.$emit('input', this.value)
+    }
+  }
 }
 </script>
 <style>
