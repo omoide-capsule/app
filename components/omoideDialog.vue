@@ -6,10 +6,9 @@
       </v-btn>
     </template>
     <omoide-card
-      :title="omoide.title"
-      :description="omoide.description"
-      :uuid="omoide.uuid"
+      :omoide="omoide"
       @close="dialog = false"
+      @deleted="$emit('deleted')"
     />
   </v-dialog>
 </template>
@@ -21,7 +20,10 @@ export default {
   },
   props: {
     omoide: {
-      type: Object
+      type: Object,
+      default: () => {
+        return { title: '', description: '', uuid: '', image: '' }
+      }
     }
   },
   data() {

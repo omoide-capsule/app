@@ -1,38 +1,47 @@
 <template>
   <v-card>
     <v-card-title>
-      <h4>{{ title }}</h4>
+      <h4>{{ omoide.title }}</h4>
     </v-card-title>
 
     <div
       v-if="image !== ''"
       class="image-box"
-      :style="`background-image:url('${image}')`"
+      :style="`background-image:url('${omoide.image}')`"
     ></div>
 
     <v-card-text>
-      <p>{{ description }}</p>
+      <p>{{ omoide.description }}</p>
     </v-card-text>
     <v-card-actions>
-      <v-btn color="#ea5550" text>削除</v-btn>
+      <v-btn color="#ea5550" text @click="deleteCapsule">削除</v-btn>
       <v-btn color="green" class="button" @click="$emit('close')">閉じる</v-btn>
     </v-card-actions>
   </v-card>
 </template>
 <script>
+import axios from 'axios'
 export default {
   props: {
-    title: {
-      type: String,
-      default: ''
-    },
-    image: {
-      type: String,
-      default: ''
-    },
-    description: {
-      type: String,
-      default: ''
+    omoide: {
+      type: Object,
+      default: () => {
+        return { title: '', description: '', uuid: '', image: '' }
+      }
+    }
+  },
+  methods: {
+    deleteCapsule() {
+      axios
+        .delete(
+          `${
+            process.env.apiBaseUrl
+          }/capsule?id=${'C4bd846c8238a1bed0b2a1dc50057e753'}`
+        )
+        .then((res) => {
+          this.$emit('close')
+          this.$emit('deleted')
+        })
     }
   }
 }
