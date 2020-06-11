@@ -15,7 +15,10 @@ export default {
   },
   props: {
     omoide: {
-      type: Object
+      type: Object,
+      default: () => {
+        return { title: '', description: '', uuid: '', image: '' }
+      }
     }
   }
 }

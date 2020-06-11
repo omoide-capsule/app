@@ -34,7 +34,7 @@
 </template>
 <script>
 export default {
-  props: { value: String },
+  props: { value: { type: String, default: '' } },
   data() {
     const todayStr = this.dateToStr(new Date())
     return {
