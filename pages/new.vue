@@ -9,6 +9,7 @@
 </template>
 
 <script>
+import axios from 'axios'
 import titleInput from '../components/titleInput'
 import bodyInput from '../components/bodyInput'
 import pictureInput from '../components/pictureInput'
@@ -22,11 +23,21 @@ export default {
       title: '',
       picture: '',
       body: '',
-      date: '' // This will overwitten at mounted()
+      date: '', // This will overwitten at mounted()
+      id: null
     }
   },
   mounted() {
     this.date = this.$refs.dateInput.dateToStr(new Date())
+
+    window.liff
+      .init({
+        liffId: process.env.LIFFId
+      })
+      .then(() => {
+        // start to use LIFF's api
+        this.initApp()
+      })
   },
   methods: {
     createCapsule() {
@@ -34,21 +45,42 @@ export default {
       deliveryDate.setHours(0)
       deliveryDate.setMinutes(0)
 
+      if (this.title === '') {
+        window.alert('タイトルは必須項目です')
+        return
+      }
+      if (this.image === '') {
+        window.alert('画像の添付は必須です。')
+        return
+      }
       const capsule = {
+        id: this.id, // this.id,
         title: this.title,
         description: this.body,
-        image: this.picture,
         registeredDate: Math.floor(new Date().getTime() / 1000),
-        deliveryDate: Math.floor(deliveryDate.getTime() / 1000)
+        deliveryDate: Math.floor(deliveryDate.getTime() / 1000),
+        image: this.picture
       }
 
-      console.log(capsule)
+      axios
+        .post(`${process.env.apiBaseUrl}/capsule`, capsule)
+        .then((res) => {
+          console.log('Capsule Registerd')
+        })
+        .catch((err) => {
+          window.alert(JSON.stringify(err))
+        })
+    },
+    initApp() {
+      const ctx = window.liff.getContext()
+      this.id = ctx.utouId || ctx.groupId || ctx.roomId || ctx.userId
     }
   },
   head() {
     return {
       titleTemplate: '',
-      title: 'あたらしいカプセルをつくる'
+      title: 'あたらしいカプセルをつくる',
+      script: [{ src: 'https://static.line-scdn.net/liff/edge/2/sdk.js' }]
     }
   }
 }
