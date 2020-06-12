@@ -4,13 +4,9 @@
       <h4>{{ omoide.title }}</h4>
     </v-card-title>
 
-    <div
-      v-if="image !== ''"
-      class="image-box"
-      :style="`background-image:url('${omoide.image}')`"
-    ></div>
+    <div class="image-box" :style="`background-image:url('${imageUrl}')`"></div>
 
-    <v-card-text>
+    <v-card-text align="center">
       <p>{{ omoide.description }}</p>
     </v-card-text>
     <v-card-actions>
@@ -26,8 +22,13 @@ export default {
     omoide: {
       type: Object,
       default: () => {
-        return { title: '', description: '', uuid: '', image: '' }
+        return { title: '', description: '', UUID: '' }
       }
+    }
+  },
+  data() {
+    return {
+      imageUrl: `${process.env.imageBaseUrl}${this.omoide.UUID}.jpeg`
     }
   },
   methods: {
@@ -36,7 +37,9 @@ export default {
         .delete(
           `${
             process.env.apiBaseUrl
-          }/capsule?id=${'C4bd846c8238a1bed0b2a1dc50057e753'}`
+          }/capsule?id=${'C4bd846c8238a1bed0b2a1dc50057e753'}&UUID=${
+            this.omoide.UUID
+          }`
         )
         .then((res) => {
           this.$emit('close')
@@ -56,8 +59,8 @@ export default {
   margin-right: auto;
   margin-top: 15px;
   margin-bottom: 15px;
-  width: 80%;
-  height: 150px;
+  width: 500px;
+  height: 300px;
   background-size: cover;
 
   border-radius: 10px;

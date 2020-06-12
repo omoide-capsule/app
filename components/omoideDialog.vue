@@ -22,7 +22,7 @@ export default {
     omoide: {
       type: Object,
       default: () => {
-        return { title: '', description: '', uuid: '', image: '' }
+        return { title: '', description: '', UUID: '' }
       }
     }
   },
