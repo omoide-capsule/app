@@ -5,7 +5,8 @@ export default {
   env: {
     apiBaseUrl:
       'https://30otyubhy3.execute-api.ap-northeast-1.amazonaws.com/prod',
-    LIFFId: '1654298000-YGxbGljd'
+    LIFFId: '1654298000-YGxbGljd',
+    imageBaseUrl: 'https://capsule-image.s3-ap-northeast-1.amazonaws.com/'
   },
   /*
    ** Headers of the page
